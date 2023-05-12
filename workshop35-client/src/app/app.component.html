@@ -1,0 +1,18 @@
+<h1>Search your book below:</h1>
+<form [formGroup]="searchForm">
+  <table>
+    <tr>
+      <td>
+        <input
+          type="text"
+          placeholder="Any book name..."
+          formControlName="title"
+          (keyup)="keyPressed($event)"
+        />
+      </td>
+    </tr>
+  </table>
+</form>
+<hr />
+<!-- <code> {{ titles$ | async }} </code> -->
+<app-display></app-display>

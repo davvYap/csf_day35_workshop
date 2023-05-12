@@ -1,0 +1,10 @@
+<div *ngIf="booksArray.length > 0; else noBooks">
+  <h3>Search Results</h3>
+
+  <!-- <code> {{ books$ | async | json }} </code> -->
+  <div *ngFor="let b of books$ | async">
+    <p>{{ b.title }}</p>
+  </div>
+</div>
+
+<ng-template #noBooks> <code>No Books</code> </ng-template>
