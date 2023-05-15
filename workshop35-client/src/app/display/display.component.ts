@@ -17,6 +17,8 @@ export class DisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.books$ = this.searchService.booksOnRequest;
+
+    // to create array of books from observable
     this.books$.subscribe((books) => {
       this.booksArray = books;
     });

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +43,24 @@ public class BooksRestController {
         }
 
         System.out.println("JAVA SERVER ONLINE");
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(jsArr.build().toString());
+    }
+
+    @PostMapping(path = "/books/form", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<String> addBook(@RequestBody MultiValueMap<String, String> payload) {
+        String title = payload.getFirst("title");
+
+        List<Book> books = booksService.getBooks(title);
+
+        JsonArrayBuilder jsArr = Json.createArrayBuilder();
+        for (Book b : books) {
+            jsArr.add(b.toJsonObject());
+        }
+
+        System.out.println("JAVA SERVER FORM ONLINE");
 
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)

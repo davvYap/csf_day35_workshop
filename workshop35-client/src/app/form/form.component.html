@@ -1,0 +1,16 @@
+<h1>Search your book using FORM:</h1>
+<form [formGroup]="form">
+  <table>
+    <tr>
+      <td>
+        <input
+          type="text"
+          placeholder="Any book name..."
+          formControlName="title"
+          (keyup)="searchBook($event)"
+          (click)="clearJSONForm()"
+        />
+      </td>
+    </tr>
+  </table>
+</form>
