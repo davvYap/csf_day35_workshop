@@ -22,7 +22,7 @@ export class SearchService {
       .post<Book[]>('http://localhost:8080/api/books', bookDetails)
       .pipe(
         tap((b) => this.booksOnRequest.next(b)),
-        map((b) => b)
+        map((b) => b) // not necessary, unless we have some logic to process here
       );
   }
 
